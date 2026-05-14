@@ -35,3 +35,9 @@ websockets==15.0.1
 yarl==1.22.0
 zstandard==0.25.0
 chromadb==0.6.3
+fastapi
+uvicorn
+langchain>=0.3.0
+langchain-community>=0.3.0
+pypdf
+sentence-transformers
