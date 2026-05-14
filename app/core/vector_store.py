@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.schema import Document
@@ -7,6 +8,8 @@ load_dotenv()
 
 CHROMA_DIR = os.getenv("CHROMA_PERSIST_DIR", "./data/chroma_db")
 COLLECTION = os.getenv("COLLECTION_NAME", "resumes")
+
+Path(CHROMA_DIR).mkdir(parents=True, exist_ok=True)
 
 def get_embedding_model():
     """Free local embeddings — runs on CPU, no API key."""
