@@ -1,5 +1,5 @@
 from langchain.agents import AgentExecutor, create_react_agent
-from langchain_core.prompts import PromptTemplate          # use langchain_core
+from langchain_core.prompts import PromptTemplate
 from app.agents.tools import search_resumes, analyze_skill_gaps, rank_candidates
 from app.core.rag_chain import get_llm
 
@@ -17,7 +17,9 @@ def build_recruiter_agent():
     llm = get_llm()
     agent = create_react_agent(llm, TOOLS, AGENT_PROMPT)
     return AgentExecutor(
-        agent=agent, tools=TOOLS,
-        verbose=True, max_iterations=5,
+        agent=agent,
+        tools=TOOLS,
+        verbose=True,
+        max_iterations=5,
         handle_parsing_errors=True,
     )

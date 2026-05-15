@@ -1,3 +1,4 @@
+import os
 import shutil
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from app.api.schemas import QueryRequest, QueryResponse, IngestResponse
@@ -12,6 +13,7 @@ router = APIRouter()
 async def ingest_resume(file: UploadFile = File(...)):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(400, "PDF only")
+    os.makedirs("data/raw", exist_ok=True)
     save_path = f"data/raw/{file.filename}"
     with open(save_path, "wb") as f:
         shutil.copyfileobj(file.file, f)
